@@ -1,0 +1,71 @@
+/* Estructura principal de layout */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 250px;
+  transition: margin-left 0.3s ease;
+  background-color: #f8f9fa;
+}
+
+.main-content.sidebar-collapsed {
+  margin-left: 60px;
+}
+
+.content-area {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background: #f8f9fa;
+  color: #2c3e50; /* Color de texto por defecto */
+}
+
+/* Reset específico para el área de contenido */
+.content-area * {
+  box-sizing: border-box;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+  }
+  
+  .main-content.sidebar-collapsed {
+    margin-left: 0;
+  }
+  
+  .content-area {
+    padding: 15px;
+  }
+}
+
+/* Mejoras para móviles */
+@media (max-width: 480px) {
+  .content-area {
+    padding: 10px;
+  }
+}
+
+/* Utilidades para forzar colores en componentes específicos */
+.force-dark-text {
+  color: #2c3e50 !important;
+}
+
+.force-white-text {
+  color: white !important;
+}
+
+.force-dark-bg {
+  background-color: #2c3e50 !important;
+}
+
+.force-light-bg {
+  background-color: #f8f9fa !important;
+}

@@ -1,0 +1,59 @@
+/* Tailwind directives - Mantener si necesitas Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* OVERRIDES PARA TAILWIND - ESTO ARREGLA EL PROBLEMA */
+/* Reset específico para evitar conflictos con componentes personalizados */
+.history-reports * {
+  box-sizing: border-box;
+}
+
+.history-reports {
+  /* Asegurar que los colores se apliquen correctamente */
+  color: #2c3e50 !important;
+}
+
+.history-reports .history-header,
+.history-reports .main-controls,
+.history-reports .advanced-filters,
+.history-reports .chart-section,
+.history-reports .sessions-section,
+.history-reports .summary-section {
+  /* Forzar colores en estos componentes */
+  color: #2c3e50 !important;
+}
+
+.history-reports .history-header * {
+  color: white !important; /* El header debe mantener texto blanco */
+}
+
+.history-reports .summary-card * {
+  color: white !important; /* Las tarjetas de resumen texto blanco */
+}
+
+/* Asegurar que los inputs y selects tengan buen contraste */
+.history-reports input,
+.history-reports select,
+.history-reports textarea {
+  color: #2c3e50 !important;
+  background-color: white !important;
+}
+
+.history-reports input::placeholder {
+  color: #6b7280 !important;
+}
+
+/* Animaciones */
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-20px) rotate(5deg); 
+  }
+}
+
+.tab-content {
+  transition: opacity 300ms ease;
+}

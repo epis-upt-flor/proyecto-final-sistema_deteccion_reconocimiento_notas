@@ -1,0 +1,19 @@
+{
+  "max_length": 173,
+  "n_mels": 128,
+  "n_fft": 2048,
+  "hop_length": 512,
+  "sr": 22050,
+  "fmin": 27.5,
+  "fmax": 4186,
+  "num_classes": 88,
+  "input_shape": [
+    128,
+    173,
+    1
+  ],
+  "model_architecture": "CNN",
+  "training_samples": 7629,
+  "test_accuracy": 0.993686854839325,
+  "test_top3_accuracy": 1.0
+}

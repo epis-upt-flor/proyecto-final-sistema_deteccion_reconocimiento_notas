@@ -1,0 +1,543 @@
+.practice-view {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.practice-header {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 25px;
+  margin-bottom: 25px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.practice-header h1 {
+  color: #2c3e50;
+  margin: 0 0 10px 0;
+  font-size: 2.2rem;
+}
+
+.composer {
+  color: #7f8c8d;
+  margin: 0 0 20px 0;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+.music-info {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.music-info span {
+  background: rgba(52, 152, 219, 0.1);
+  color: #3498db;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.practice-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+/* Visualizador de Partitura */
+.sheet-display {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.sheet-header h3 {
+  color: #2c3e50;
+  margin: 0;
+}
+
+.current-position {
+  background: #3498db;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 15px;
+  font-weight: bold;
+}
+
+.staff {
+  background: #fff9e6;
+  border: 2px solid #d4af37;
+  border-radius: 10px;
+  padding: 30px 20px;
+  margin-bottom: 20px;
+  min-height: 200px;
+  position: relative;
+}
+
+.staff::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 20%;
+  height: 1px;
+  background: #ccc;
+}
+
+.staff::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 80%;
+  height: 1px;
+  background: #ccc;
+}
+
+.notes-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.note {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  background: #f8f9fa;
+  border: 2px solid #dee2e6;
+}
+
+.note.played {
+  background: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.note.current {
+  background: #d1ecf1;
+  border-color: #bee5eb;
+  color: #0c5460;
+  transform: scale(1.2);
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.current-indicator {
+  position: absolute;
+  top: -20px;
+  color: #3498db;
+  font-size: 1.2rem;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.progress-meter {
+  margin-top: 20px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background: #e9ecef;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  text-align: center;
+  margin-top: 10px;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+/* Panel de Retroalimentación */
+.feedback-panel {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.feedback-panel h3 {
+  color: #2c3e50;
+  margin: 0 0 15px 0;
+  text-align: center;
+}
+
+.feedback-visual {
+  text-align: center;
+}
+
+.feedback-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.feedback-message {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2c3e50;
+  text-align: center;
+}
+
+.note-indicators {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.note-indicator {
+  text-align: center;
+}
+
+.note-indicator label {
+  display: block;
+  margin-bottom: 8px;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.note-display {
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.note-display.expected {
+  background: #3498db;
+}
+
+.note-display.detected {
+  background: #6c757d;
+}
+
+.live-metrics {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.metric label {
+  color: #495057;
+  font-weight: 500;
+}
+
+.metric-value {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.metric-value.accuracy {
+  color: #28a745;
+}
+
+.metric-value.rhythm {
+  color: #ffc107;
+}
+
+/* Panel de Control */
+.control-panel {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.control-panel h3 {
+  margin: 0 0 15px 0;
+  text-align: center;
+}
+
+.control-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: #3498db;
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #2980b9;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #5a6268;
+}
+
+.btn-warning {
+  background: #ffc107;
+  color: #212529;
+}
+
+.btn-warning:hover:not(:disabled) {
+  background: #e0a800;
+}
+
+.volume-control {
+  margin-bottom: 20px;
+}
+
+.volume-control label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: #495057;
+  font-weight: 500;
+}
+
+.volume-slider {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.volume-value {
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  color: #3498db;
+}
+
+.practice-status {
+  text-align: center;
+}
+
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.status-indicator.playing {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-indicator.paused {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-indicator.stopped {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* Resumen de Rendimiento */
+.performance-summary {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.performance-summary h3 {
+  color: #2c3e50;
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.summary-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.summary-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.summary-icon.accuracy {
+  background: #28a745;
+}
+
+.summary-icon.rhythm {
+  background: #ffc107;
+}
+
+.summary-icon.speed {
+  background: #dc3545;
+}
+
+.summary-content h4 {
+  margin: 0 0 5px 0;
+  color: #6c757d;
+  font-size: 0.9rem;
+  font-weight: normal;
+}
+
+.summary-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .practice-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .practice-view {
+    padding: 15px;
+  }
+  
+  .notes-container {
+    gap: 10px;
+  }
+  
+  .note {
+    width: 50px;
+    height: 50px;
+    font-size: 1rem;
+  }
+  
+  .control-buttons {
+    grid-template-columns: 1fr;
+  }
+  
+  .note-indicators {
+    grid-template-columns: 1fr;
+  }
+  
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .practice-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .music-info {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .sheet-header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+  
+  .feedback-circle {
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
+  }
+}
